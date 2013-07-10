@@ -1,6 +1,6 @@
 #summary Project documentation
 
-=american fuzzy lop - a practical, instrumentation driven fuzzer=
+=american fuzzy lop - a practical instrumentation-driven fuzzer=
 
   * Written and maintained by [mailto:lcamtuf@google.com Michal Zalewski]
   * Copyright 2013 Google Inc, rights reserved.

@@ -1,0 +1,23 @@
+#summary Project documentation
+
+=american fuzzy lop - a practical, instrumentation driven fuzzer=
+
+  * Written and maintained by [mailto:lcamtuf@google.com Michal Zalewski]
+  * Copyright 2013 Google Inc, rights reserved.
+  * Released under terms and conditions of the Apache License, version 2.0.
+
+==Background==
+
+Fuzzing is one of the most powerful methods of detecting software security problems, but it tends to offer shallow coverage: it is usually impractical to exhaustively examine all possible inputs and reach all the internal states of the tested application.
+
+There have been numerous, primarily academic attempts to improve the penetration of fuzz testing through various types of runtime instrumentation and static analysis. These techniques can be divided into three broad groups:
+
+  * Simple coverage maximization: selecting test cases or mutations that improve the measured coverage of the instrumented code.
+
+  * Control flow analysis: selecting test cases or mutations that exercise distinctive code paths in the tested application.
+
+  * Effector analysis: selecting test cases or mutations that are expected to produce specific outcomes within the internal state of the program.
+
+The first technique is surprisingly powerful when used to preselect initial test cases from a large corpus of data. But because it quickly reaches a plateau in terms of the recorded coverage, it tends to be less useful for providing continued guidance thoroughout the fuzzing process.
+
+The last two techniques are extremely promising in experimental settings, but in real-world applications, they lead to irreducible complexity: almost every instrumented program has a vast number of internal states and possible execution paths. Distinguishing between interesting leads and pointless tarpits is problematic - and without this, instrumented fuzzers are overwhelmed by the number of generated test cases and usually produce results that are just marginally better than chance.

@@ -34,7 +34,7 @@ In essence, the fuzzer instruments every effective line of C or C++ code to reco
 
 The ordering or hit count for each tuple is discarded; the only signal used by the fuzzer is the appearance of a previously-unseen tuple in the output dataset. This method combines the self-limiting nature of simple coverage measurements with the sensitivity of control flow analysis.
 
-The instrumentation is used as a part of a simple "genetic" algorithm:
+The instrumentation is used as a part of a simple, vaguely "genetic" algorithm:
 
   # Load user-supplied initial test cases into the queue,
   # Take input file from the queue,

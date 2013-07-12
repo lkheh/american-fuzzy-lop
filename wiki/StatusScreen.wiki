@@ -1,4 +1,6 @@
-#summary american fuzzy lop: understanding status screen
+#summary A guide to the status screen
+
+=american fuzzy lop: understandin the status screen=
 
 When running `afl-fuzz`, the status screen should look roughly the following way:
 

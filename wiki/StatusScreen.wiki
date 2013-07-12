@@ -1,6 +1,6 @@
 #summary american fuzzy lop: understanding status screen
 
-When running `afl-fuzz`, the status screen looks roughly the following way:
+When running `afl-fuzz`, the status screen should look roughly the following way:
 
 {{{
 afl-fuzz 0.20b
@@ -27,24 +27,40 @@ In-depth stats:
   Havoc stage yields : 7/5000 (0 latent paths)
 }}}
 
-This page provides a line-by-line explanation for each of these stats.
+This page provides an overview for each of the displayed stats.
 
-=Overall run time=
+==Queue cycle==
 
-=Problems found=
+This counter advances every time the fuzzer finishes going through all the interesting inputs and wraps around to the beginning of the queue. In general, any fuzzing job should complete at least one queue cycle - and ideally, much more.
 
-=Last new path=
+==Overall run time==
 
-=Last unique crash=
+At the name implies, this field captures the overall run time for the entire fuzzing session.
 
-=Execution paths=
+==Problems found==
 
-=Current stage=
+This line counts the number of crashes and timeouts encountered during the fuzzing process.
 
-=Execution cycles=
+The fuzzer tries to identify duplicates by calculating a hash of the execution path. This is usually very reliable for crashes, but can be hit-and-miss for timeouts.
 
-=Bitmap density=
+==Last new path==
 
-=Fuzzing efficiency=
+This shows the time elapsed since the discovery of any previously unseen execution paths. This is useful for deciding when to end the fuzzing process: if no new paths have been identified for several days, you might have reached a plateau.
 
-=Per-stage yields=
+==Last unique crash==
+
+This field displays the time elapsed since the discovery of any previously unseen crashes. It provides a quick visual confirmation of new finds, and helps you decide when to end the fuzzing process.
+
+==Execution paths==
+
+This 
+
+==Current stage==
+
+==Execution cycles==
+
+==Bitmap density==
+
+==Fuzzing efficiency==
+
+==Per-stage yields==

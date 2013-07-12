@@ -1,5 +1,4 @@
 #summary Project documentation
-#labels Featured
 
 =american fuzzy lop - a practical instrumentation-driven fuzzer=
 

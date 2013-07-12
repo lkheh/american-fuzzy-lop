@@ -45,7 +45,7 @@ The fuzzer tries to identify duplicates by calculating a hash of the execution p
 
 ==Last new path==
 
-This shows the time elapsed since the discovery of any previously unseen execution paths. This is useful for deciding when to end the fuzzing process: if no new paths have been identified for several days, you might have reached a plateau.
+This line shows the time elapsed since the discovery of any previously unseen execution paths. This is useful for deciding when to end the fuzzing process: if no new paths have been identified for several days, you might have reached a plateau.
 
 ==Last unique crash==
 
@@ -53,14 +53,26 @@ This field displays the time elapsed since the discovery of any previously unsee
 
 ==Execution paths==
 
-This 
+The field tracks the overall progress through a single queue cycle. The first number represents the number of successfully fuzzed inputs, the second one shows the number of inputs abandoned due to timeouts. The third figure shows the overall size of the input queue; it should gradually increase as additional "interesting" inputs are discovered during the fuzzing process.
 
 ==Current stage==
 
+Shows the name of the current fuzzing strategy applied to a particular input, along with the number of completed executions and the expected total.
+
 ==Execution cycles==
+
+Provides a total counter of `execve()` calls and indicates the average number of execs per second. Ideally, this number should exceed 1000; if it's lower than 100, the fuzzing process will be quite a drag.
 
 ==Bitmap density==
 
+This value monitors the health of the injected instrumentation; if it remains very low (under 10%), the coverage achieved during the fuzzing process may be inadequate. Figures in the vicinity of 20-40% are ideal.
+
 ==Fuzzing efficiency==
 
+This field describes the average frequency of new paths, unique crashes, and unique hangs, per one million `execve()` calls. It offers some comparative insight into the ease of fuzzing the current input format, and the robustness of the tested code.
+
 ==Per-stage yields==
+
+These lines document the number of new paths, crashes, or hangs contributed by each of the implemented fuzzing strategies. It is meant mostly as a QA tool for the fuzzer itself.
+
+The "latent paths" statistic for the havoc stage keeps track of the number of execution paths that were discovered after completing the initial pass of the queue.

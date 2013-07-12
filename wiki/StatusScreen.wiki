@@ -1,0 +1,50 @@
+#summary american fuzzy lop: understanding status screen
+
+When running `afl-fuzz`, the status screen looks roughly the following way:
+
+{{{
+afl-fuzz 0.20b
+--------------
+
+Queue cycle: 1
+
+    Overall run time : 0 days, 0 hrs, 2 min, 34.00 sec
+      Problems found : 2 crashes (1 unique), 67 hangs (13 unique)
+       Last new path : 0 days, 0 hrs, 0 min, 36.58 sec ago
+   Last unique crash : 0 days, 0 hrs, 2 min, 23.58 sec ago
+
+In-depth stats:
+
+     Execution paths : 1+0/99 done (1.01%)
+       Current stage : interest 32/8, 30600/33490 done (91.37%)
+    Execution cycles : 162476 (1055.02 per second)
+      Bitmap density : 3542 tuples seen (10.81%)
+  Fuzzing efficiency : path = 609.32, crash = 6.15, hang = 80.01 ppm
+
+     Bit flip yields : 64/10272, 17/10270, 6/10266
+    Byte flip yields : 1/1284, 4/1282, 2/1278
+    Known int yields : 4/11556, 4/47510, 3/33390
+  Havoc stage yields : 7/5000 (0 latent paths)
+}}}
+
+This page provides a line-by-line explanation for each of these stats.
+
+=Overall run time=
+
+=Problems found=
+
+=Last new path=
+
+=Last unique crash=
+
+=Execution paths=
+
+=Current stage=
+
+=Execution cycles=
+
+=Bitmap density=
+
+=Fuzzing efficiency=
+
+=Per-stage yields=

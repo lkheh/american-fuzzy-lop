@@ -33,43 +33,55 @@ This page provides an overview for each of the displayed stats.
 
 ==Queue cycle==
 
-This counter advances every time the fuzzer finishes going through all the interesting inputs and wraps around to the beginning of the queue. In general, any fuzzing job should complete at least one queue cycle - and ideally, much more.
+This counter advances every time the fuzzer finishes going through all the interesting inputs and wraps around to the beginning of the queue. In general, any fuzzing job should complete at least one full queue cycle - and ideally, should be allowed to run considerably longer than that.
 
 ==Overall run time==
 
-At the name implies, this field captures the overall run time for the entire fuzzing session.
+At the name implies, this field captures the overall run time for the entire fuzzing session. The fuzzing process continues until you press Ctrl-C. It is common to leave fuzzing jobs running for days, weeks, or months; the output directory can be accessed to investigate any potential finds on an ongoing basis.
 
 ==Problems found==
 
 This line counts the number of crashes and timeouts encountered during the fuzzing process.
 
-The fuzzer tries to identify duplicates by calculating a hash of the execution path. This is usually very reliable for crashes, but can be hit-and-miss for timeouts.
+In addition to simply counting all faults, the fuzzer tries to identify duplicates by calculating a hash of the execution path that led to the fault condition. This is usually very reliable for crashes, but may inflate the number of unique hangs, especially when aggressive timeouts are in place.
 
 ==Last new path==
 
-This line shows the time elapsed since the discovery of any previously unseen execution paths. This is useful for deciding when to end the fuzzing process: if no new paths have been identified for several days, you might have reached a plateau.
+This line shows the time elapsed since the discovery of a previously unseen execution path. The parameter is useful for deciding when to end the fuzzing process: if the number of queue cycles is increasing steadily but no new paths are being identified for several days, it may be time to give up.
 
 ==Last unique crash==
 
-This field displays the time elapsed since the discovery of any previously unseen crashes. It provides a quick visual confirmation of new finds, and helps you decide when to end the fuzzing process.
+This field displays the time elapsed since the discovery of any previously unseen crashes. It provides a quick visual confirmation for new finds.
 
 ==Execution paths==
 
-The field tracks the overall progress through a single queue cycle. The first number represents the number of successfully fuzzed inputs, the second one shows the number of inputs abandoned due to timeouts. The third figure shows the overall size of the input queue; it should gradually increase as additional "interesting" inputs are discovered during the fuzzing process.
+The field tracks the overall progress through a single queue cycle. The first number represents the number of successfully fuzzed inputs taken from the queue, while the second one shows the number of inputs abandoned due to timeouts. The third figure shows the overall size of the input queue; it should be gradually increasing as additional "interesting" inputs are discovered during the fuzzing process and added to the pile.
 
-The last parameter in this line describes the number of inputs that produced fluctuating execution paths during the calibration phase. This may be caused by randomness intentionally built into the fuzzed library, or due to the use of uninitialized memory in presence of sources of entropy such as ASLR. These paths are denoted with a `-variable` suffix in the output directory, and may warrant additional investigation later on.
+Finally, the last parameter in this line describes the number of inputs that seemed to produce unstable execution paths during the calibration phase. Such behavior may be caused by randomness intentionally built into the fuzzed library, or due to the use of uninitialized memory in presence of sources of entropy such as ASLR. These paths are denoted with a `-variable` suffix in the output directory; while not necessarily indicative of a security problem, the entries may warrant additional investigation later on.
 
 ==Current stage==
 
-Shows the name of the current fuzzing strategy applied to a particular input, along with the number of completed executions and the expected total.
+Shows the name of the current fuzzing strategy applied to a particular input, along with the number of completed executions and the expected total. The current stages are:
+
+  * `calibration` - a pre-fuzzing stage where the execution path is examined to detect anomalies.
+
+  * `bitflip L/S` - deterministic bit flip. There are L bits toggled at any given time, walking the input file at S-bit increments. The current L/S variants are: 1/1, 2/1, 4/1, 8/8, 16/8, 32/8.
+
+  * `interest L/8` - deterministic value overwrite. The fuzzer has a list of known "interesting" 8-, 16-, and 32-bit values to try. In each mode, the stepover is always 8 bits.
+
+  * `havoc` - a fixed-length cycle with stacked random tweaks. The operations attempted during this stage include bit flips, overwrites with random and "interesting" integers, block deletion, and block duplication.
 
 ==Execution cycles==
 
-Provides a total counter of `execve()` calls and indicates the average number of execs per second. Ideally, this number should exceed 1000; if it's lower than 100, the fuzzing process will be quite a drag.
+Provides a total counter of `execve()` calls performed so far and keeps track of the average number of execs per second across the entire fuzzing process. Ideally, this number should exceed 500; if it's lower than 100, the fuzzing process will be quite a drag.
+
+Note that the display is refreshed roughly once per 100 executions.
 
 ==Bitmap density==
 
-This value monitors the health of the injected instrumentation; if it remains very low (under 10%), the coverage achieved during the fuzzing process may be inadequate. Figures in the vicinity of 20-40% are ideal.
+This value monitors the health of the injected instrumentation; if the number remains very low (under 10%), the coverage achieved during the fuzzing process may be inadequate. This may be because the starting input file is not valid; because there are strong checksums guarding the data; or because the instrumentation does not extend to the library that actually parses the data.
+
+Figures in the vicinity of 20-40% are ideal.
 
 ==Fuzzing efficiency==
 
@@ -77,6 +89,6 @@ This field describes the average frequency of new paths, unique crashes, and uni
 
 ==Per-stage yields==
 
-These lines document the number of new paths, crashes, or hangs contributed by each of the implemented fuzzing strategies. It is meant mostly as a QA tool for the fuzzer itself.
+These lines document the number of new paths, crashes, or hangs contributed by each of the implemented fuzzing strategies. It is meant mostly to prove or disprove the utility of each of the implemented fuzzing strategies.
 
 The "latent paths" statistic for the havoc stage keeps track of the number of execution paths that were discovered after completing the initial pass of the queue.

@@ -72,7 +72,9 @@ Shows the name of the current fuzzing strategy applied to a particular input, al
 
   * `interest L/8` - deterministic value overwrite. The fuzzer has a list of known "interesting" 8-, 16-, and 32-bit values to try. The stepover is 8 bits.
 
-  * `havoc` - a fixed-length cycle with stacked random tweaks. The operations attempted during this stage include bit flips, overwrites with random and "interesting" integers, block deletion, and block duplication.
+  * `havoc` - a sort-of-fixed-length cycle with stacked random tweaks. The operations attempted during this stage include bit flips, overwrites with random and "interesting" integers, block deletion, and block duplication.
+
+The first stages are executed only once per every new input, and have a run time proportional to the size of the input file. The "havoc" stage is repeated until `Ctrl-C` is hit; the proportion of time dedicated to each input is dynamically scaled depending on recorded coverage, program execution speed, fuzzing yields, and so on.
 
 ==Execution cycles==
 

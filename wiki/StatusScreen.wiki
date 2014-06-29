@@ -5,7 +5,7 @@
 When running `afl-fuzz`, the status screen should look roughly the following way:
 
 {{{
-afl-fuzz 0.20b
+afl-fuzz 0.23b
 --------------
 
 Queue cycle: 1
@@ -17,7 +17,7 @@ Queue cycle: 1
 
 In-depth stats:
 
-     Execution paths : 3+0/98 done (3.06%), 0 variable
+     Execution paths : 3+0/98 done (3.06%), 0 variable, 2 levels
        Current stage : interest 16/8, 9700/10980 done (88.34%)
     Execution cycles : 532639 (1027.73 per second)
       Bitmap density : 2758 tuples seen (8.42%)
@@ -58,7 +58,9 @@ This field displays the time elapsed since the discovery of any previously unsee
 
 The field tracks the overall progress through a single queue cycle. The first number represents the number of successfully fuzzed inputs taken from the queue, while the second one shows the number of inputs abandoned due to timeouts. The third figure shows the overall size of the input queue; it should be gradually increasing as additional "interesting" inputs are discovered during the fuzzing process and added to the pile.
 
-Finally, the last parameter in this line describes the number of inputs that seemed to produce unstable execution paths during the calibration phase. Such behavior may be caused by randomness intentionally built into the fuzzed library, or due to the use of uninitialized memory in presence of sources of entropy such as ASLR. These paths are denoted with a `-variable` suffix in the output directory; while not necessarily indicative of a security problem, the entries may warrant additional investigation later on.
+The next parameter in this line describes the number of inputs that seemed to produce unstable execution paths during the calibration phase. Such behavior may be caused by randomness intentionally built into the fuzzed library, or due to the use of uninitialized memory in presence of sources of entropy such as ASLR. These paths are denoted with a `-variable` suffix in the output directory; while not necessarily indicative of a security problem, the entries may warrant additional investigation later on.
+
+Finally, the last variable describes the generational distance between the initial inputs (level 1) and the most distant unique test case generated so far.
 
 ==Current stage==
 

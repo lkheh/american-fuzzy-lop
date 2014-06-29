@@ -86,9 +86,9 @@ Note that the display is refreshed roughly once per 100 executions.
 
 ==Bitmap density==
 
-This value monitors the health of the injected instrumentation; if the number remains very low (under 10%), the coverage achieved during the fuzzing process may be inadequate. This may be because the starting input file is not valid; because there are strong checksums guarding the data; or because the instrumentation does not extend to the library that actually parses the data.
+This value monitors the health of the injected instrumentation; if the number remains very low, the coverage achieved during the fuzzing process may be inadequate (or the program may be very simple). This may be because the starting input file is not valid; because there are strong checksums guarding the data; or because the instrumentation does not extend to the library that actually parses the data.
 
-Figures in the vicinity of 20-40% are ideal.
+Figures in the vicinity of 10-30% are ideal.
 
 ==Fuzzing efficiency==
 

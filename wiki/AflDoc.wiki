@@ -42,7 +42,7 @@ The instrumentation is used as a part of a simple, vaguely "genetic" algorithm:
   # If any of the generated mutations resulted in a new tuple being recorded by the instrumentation, add mutated output as a new entry in the queue.
   # Go to 2.
 
-In real-world testing with libraries such as libjpeg, libpng, libtiff, or
+In real-world testing with libraries such as gzip, libjpeg, libpng, libtiff, or
 giflib, the fuzzer requires no fine-tuning, and significantly outperforms
 coverage-only tools - and typically produces compact, low-noise test cases. Using a common set of strategies against libjpeg, the tool toggles twice as many branches as non-instrumented fuzzing (`IGNORE_FINDS` in `config.h`) and identifies around 40% more distinctive test cases than coverage-based algorithms (`COVERAGE_ONLY` in `config.h`).
 

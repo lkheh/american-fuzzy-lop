@@ -5,8 +5,7 @@
 When running `afl-fuzz`, the status screen should look roughly the following way:
 
 {{{
-afl-fuzz 0.23b
---------------
+>>> afl-fuzz 0.24b (gzip) <<<
 
 Queue cycle: 1
 
@@ -20,7 +19,7 @@ In-depth stats:
      Execution paths : 3+0/98 done (3.06%), 0 variable, 2 levels
        Current stage : interest 16/8, 9700/10980 done (88.34%)
     Execution cycles : 532639 (1027.73 per second)
-      Bitmap density : 2758 tuples seen (8.42%)
+      Bitmap density : 2758/2192 tuples seen (8.42%)
   Fuzzing efficiency : path = 182.11, crash = 0.00, hang = 11.26 ppm
 
      Bit flip yields : 65/19040, 9/19036, 4/19028
@@ -86,9 +85,11 @@ Note that the display is refreshed roughly once per 100 executions.
 
 ==Bitmap density==
 
-This value monitors the health of the injected instrumentation; if the number remains very low, the coverage achieved during the fuzzing process may be inadequate. This may be because the starting input file is not valid; because there are strong checksums guarding the data; or because the instrumentation does not extend to the library that actually parses the data. Another less sinister explanation is that the program is just very simple.
+This value monitors the health of the injected instrumentation. The first number counts all the unique tuples seen so far, while the second one counts just the ones that seem to be changing dynamically depending on the input file.
 
-Figures in the vicinity of 10-30% are ideal.
+If the values remain very low, the coverage achieved during the fuzzing process may be inadequate. This may be because the starting input file is not valid; because there are strong checksums guarding the data; or because the instrumentation does not extend to the library that actually parses the data. Another less sinister explanation is that the program is just very simple and there isn't much to test.
+
+Tuple coverage in the vicinity of 5-30% are ideal.
 
 ==Fuzzing efficiency==
 

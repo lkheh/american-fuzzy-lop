@@ -5,7 +5,7 @@
 When running `afl-fuzz`, the status screen should look roughly the following way:
 
 {{{
->>> afl-fuzz 0.24b (gzip) <<<
+>>> afl-fuzz 0.25b (gzip) <<<
 
 Queue cycle: 1
 

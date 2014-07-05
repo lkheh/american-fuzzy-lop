@@ -19,7 +19,7 @@ In-depth stats:
      Execution paths : 3+0/98 done (3.06%), 0 variable, 2 levels
        Current stage : interest 16/8, 9700/10980 done (88.34%)
     Execution cycles : 532639 (1027.73 per second)
-      Bitmap density : 2758 tuples seen (8.42%)
+      Bitmap density : 2758 tuples seen (8.42%), 2.11 bits/tuple
   Fuzzing efficiency : path = 182.11, crash = 0.00, hang = 11.26 ppm
 
      Bit flip yields : 65/19040, 9/19036, 4/19028

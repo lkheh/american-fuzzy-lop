@@ -16,7 +16,8 @@ Queue cycle: 1
 
 In-depth stats:
 
-     Execution paths : 3+0/98 done (3.06%), 0 variable, 2 levels
+      Cycle progress : 3/98 done (3.06%), 0 skipped
+       Path topology : 2 levels, 95 pending, 0 latent, 0 variable
        Current stage : interest 16/8, 9700/10.9k done (88.34%)
     Execution cycles : 532.6k (1027.73 per second)
       Bitmap density : 2758 tuples seen (8.42%), 2.11 bits/tuple
@@ -26,7 +27,7 @@ In-depth stats:
     Byte flip yields : 0/2380, 5/2376, 1/2368
   Arithmetics yields : 12/152.3k, 0/44.4k, 0/16.4k
     Known int yields : 3/21.0k, 2/31.9k, 1/44.3k
-  Havoc stage yields : 20/90.0k (0 latent paths)
+  Havoc stage yields : 20/90.0k, 0/0
 }}}
 
 This page provides an overview for each of the displayed stats.
@@ -53,13 +54,19 @@ This line shows the time elapsed since the discovery of a previously unseen exec
 
 This field displays the time elapsed since the discovery of any previously unseen crashes. It provides a quick visual confirmation for new finds.
 
-==Execution paths==
+==Cycle progress==
 
-The field tracks the overall progress through a single queue cycle. The first number represents the number of successfully fuzzed inputs taken from the queue, while the second one shows the number of inputs abandoned due to timeouts. The third figure shows the overall size of the input queue; it should be gradually increasing as additional "interesting" inputs are discovered during the fuzzing process and added to the pile.
+The field tracks the overall progress through a single queue cycle. The first number correspond to the number of processed input test cases, while the second represents the current total. The total should be gradually increasing as additional "interesting" inputs are discovered during the fuzzing process and added to the pile.
 
-The next parameter in this line describes the number of inputs that seemed to produce unstable execution paths during the calibration phase. Such behavior may be caused by randomness intentionally built into the fuzzed library, or due to the use of uninitialized memory in presence of sources of entropy such as ASLR. These paths are denoted with a `-variable` suffix in the output directory; while not necessarily indicative of a security problem, the entries may warrant additional investigation later on.
+The last value indicates the number of inputs skipped due to timeouts.
 
-Finally, the last variable describes the generational distance between the initial inputs (level 1) and the most distant unique test case generated so far.
+==Path topology==
+
+The first value describes the generational distance between the initial inputs (level 1) and the most distant unique test case generated so far. The second one indicates the number of newly discovered inputs that have not gone through any fuzzing yet.
+
+The "latent" value keeps track of the number of more elusive execution paths that were discovered after completing the initial pass of the queue.
+
+Finally, the last parameter in this line describes the number of inputs that seemed to produce unstable execution paths during the calibration phase. Such behavior may be caused by randomness intentionally built into the fuzzed library, or due to the use of uninitialized memory in presence of sources of entropy such as ASLR. These paths are denoted with a `-variable` suffix in the output directory; while not necessarily indicative of a security problem, the entries may warrant additional investigation later on.
 
 ==Current stage==
 
@@ -98,5 +105,3 @@ This field describes the average frequency of new paths, unique crashes, and uni
 ==Per-stage yields==
 
 These lines document the number of new paths and crashes (but not hangs)  contributed by each of the implemented fuzzing strategies. It is meant mostly to prove or disprove the utility of each of the implemented fuzzing strategies.
-
-The "latent paths" statistic for the havoc stage keeps track of the number of execution paths that were discovered after completing the initial pass of the queue.

@@ -17,16 +17,16 @@ Queue cycle: 1
 In-depth stats:
 
      Execution paths : 3+0/98 done (3.06%), 0 variable, 2 levels
-       Current stage : interest 16/8, 9700/10980 done (88.34%)
-    Execution cycles : 532639 (1027.73 per second)
+       Current stage : interest 16/8, 9700/10.9k done (88.34%)
+    Execution cycles : 532.6k (1027.73 per second)
       Bitmap density : 2758 tuples seen (8.42%), 2.11 bits/tuple
   Fuzzing efficiency : path = 182.11, crash = 0.00, hang = 11.26 ppm
 
-     Bit flip yields : 65/19040, 9/19036, 4/19028
+     Bit flip yields : 65/19.0k, 9/19.0k, 4/19.0k
     Byte flip yields : 0/2380, 5/2376, 1/2368
-  Arithmetics yields : 12/152320, 0/44499, 0/16480
-    Known int yields : 3/21006, 2/31938, 1/44352
-  Havoc stage yields : 20/90000 (0 latent paths)
+  Arithmetics yields : 12/152.3k, 0/44.4k, 0/16.4k
+    Known int yields : 3/21.0k, 2/31.9k, 1/44.3k
+  Havoc stage yields : 20/90.0k (0 latent paths)
 }}}
 
 This page provides an overview for each of the displayed stats.
@@ -74,6 +74,8 @@ Shows the name of the current fuzzing strategy applied to a particular input, al
   * `interest L/8` - deterministic value overwrite. The fuzzer has a list of known "interesting" 8-, 16-, and 32-bit values to try. The stepover is 8 bits.
 
   * `havoc` - a sort-of-fixed-length cycle with stacked random tweaks. The operations attempted during this stage include bit flips, overwrites with random and "interesting" integers, block deletion, and block duplication.
+
+  * `splice` - a last-resort strategy that kicks in after a full queue cycle with no new paths. It is equivalent to havoc, except that it first splices together two random inputs from the queue at some arbitrarily selected midpoint.
 
 The first stages are executed only once per every new input, and have a run time proportional to the size of the input file. The "havoc" stage is repeated until `Ctrl-C` is hit; the proportion of time dedicated to each input is dynamically scaled depending on recorded coverage, program execution speed, fuzzing yields, and so on.
 

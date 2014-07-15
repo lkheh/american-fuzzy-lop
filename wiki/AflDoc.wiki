@@ -101,8 +101,6 @@ The deterministic stage takes time proportional to the size of the input file; o
 
 For large inputs, or when trying to distribute the fuzzing process, you can use `-d` to skip the deterministic stages and proceed straight to random tweaks.
 
-Last but not least, the `-u` option can be useful if you wish to conserve disk space: it makes the fuzzer store only the first test case for every distinctive execution path that led to a crash or a hang. Fuzzing coverage as such is not affected by this flag.
-
 ==Interpreting output==
 
 The fuzzer keeps going until aborted with Ctrl-C or killed with SIGINT or

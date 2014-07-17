@@ -109,7 +109,7 @@ number of distinctive execution paths discovered, the current queue cycle, the n
 
 There are three subdirectories created within the output directory:
 
-  * `queue/` - initial test cases for every distinctive execution path. The data may be useful for seeding other fuzzers, for resuming a stopped fuzzing jobs, and for manual testing work.<p></p>Test cases that produced inherently variable execution paths have `-variable` appended to their file names.
+  * `queue/` - initial test cases for every distinctive execution path. The data may be useful for seeding other fuzzers, for resuming a stopped fuzzing jobs, and for manual testing work.<p></p>Test cases that produced inherently variable execution paths have `+var` appended to their file names. The ones that produce new tuple coverage (and not just run count) will be marked as `+cov`.<p></p>A script in experimental/minimize/ can be used to minimize the number of discovered testcases before using them for additional fuzzing or feeding them to other applications.
 
   * `hangs/` - test cases that cause the tested program to time out. The entries are grouped by a 32-bit hash of the execution path.
 

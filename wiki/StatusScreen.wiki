@@ -16,7 +16,7 @@ Queue cycle: 1
 
 In-depth stats:
 
-      Cycle progress : 3/98 done (3.06%), 0 skipped
+      Cycle progress : 3/98+0 done (3.06%), 0 skipped
        Path topology : 2 levels, 95 pending, 0 latent, 0 variable
        Current stage : interest 16/8, 9700/10.9k done (88.34%)
     Execution cycles : 532.6k (1027.73 per second)
@@ -56,7 +56,7 @@ This field displays the time elapsed since the discovery of any previously unsee
 
 ==Cycle progress==
 
-The field tracks the overall progress through a single queue cycle. The first number correspond to the number of processed input test cases, while the second represents the current total. The total should be gradually increasing as additional "interesting" inputs are discovered during the fuzzing process and added to the pile.
+The field tracks the overall progress through a single queue cycle. The first number correspond to the number of processed input test cases, while the second represents the current total, broken into cases that are still considered worthwhile, and ones that were obsoleted by better coverage in later finds. The total should be gradually increasing as additional "interesting" inputs are discovered during the fuzzing process and added to the pile.
 
 The last value indicates the number of inputs skipped due to timeouts.
 

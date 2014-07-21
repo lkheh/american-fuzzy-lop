@@ -34,7 +34,7 @@ This page provides an overview for each of the displayed stats.
 
 ==Queue cycle==
 
-This counter advances every time the fuzzer finishes going through all the interesting inputs and wraps around to the beginning of the queue. In general, any fuzzing job should complete at least one full queue cycle - and ideally, should be allowed to run considerably longer than that.
+This counter advances every time the fuzzer finishes going through all the interesting inputs and wraps around to the beginning of the queue. In general, any fuzzing job should complete at least one full queue cycle - and ideally, should be allowed to run considerably longer than that (few hundred cycles may be a good plan).
 
 ==Overall run time==
 

@@ -8,19 +8,19 @@
 
 ==Background==
 
-Fuzzing is one of the most powerful methods of detecting software security problems, but it tends to offer shallow coverage: it is usually impractical to exhaustively examine all possible inputs and reach all the internal states of the tested application.
+Fuzzing is one of the most powerful strategies for identifying security issues in real-world software. Unfortunately, it also offers fairly shallow coverage: it is impractical to exhaustively cycle through all possible inputs, so even something as simple as setting three separate bytes to a specific value to reach a chunk of unsafe code can be an insurmountable obstacle to a typical fuzzer.
 
-There have been numerous, primarily academic attempts to improve the penetration of fuzz testing through various types of runtime instrumentation and static analysis. These techniques can be divided into three broad groups:
+There have been numerous attempts to solve this problem by augmenting the process with additional information about the behavior of the tested code. These techniques can be divided into three broad groups:
 
-  * Simple coverage maximization: selecting test cases or mutations that improve the measured coverage of the instrumented code.
+  * Simple coverage maximization. This approach boils down to trying to isolate initial test cases that offer diverse code coverage in the targeted application - and them fuzzing them using conventional techniques.
 
-  * Control flow analysis: selecting test cases or mutations that exercise distinctive code paths in the tested application.
+  * Control flow analysis. A more sophisticated technique that leverages instrumented binaries to focus the fuzzing efforts on mutations that generate distinctive sequences of conditional branches within the instrumented binary.
 
-  * Effector analysis: selecting test cases or mutations that are expected to produce specific outcomes within the internal state of the program.
+  * Static analysis. An approach that attempts to reason about potentially interesting states within the tested program and then make educated guesses about the input values that could possibly trigger them.
 
-The first technique is surprisingly powerful when used to preselect initial test cases from a large corpus of data. But because it quickly reaches a plateau in terms of the recorded coverage, it tends to be less useful for providing continued guidance thoroughout the fuzzing process.
+The first technique is surprisingly powerful when used to pre-select initial test cases from a massive corpus of valid data - say, the result of a large-scale web crawl. Unfortunately, coverage measurements provide only a very simplistic view of the internal state of the program, making them less suited for creatively guiding the fuzzing process later on.
 
-The last two techniques are extremely promising in experimental settings, but in real-world applications, they lead to irreducible complexity: almost every instrumented program has a vast number of internal states and possible execution paths. Distinguishing between interesting leads and pointless tarpits is problematic - and without this, instrumented fuzzers are overwhelmed by the number of generated test cases and usually produce results that are just marginally better than chance.
+The latter two techniques are extremely promising in experimental settings. That said, in real-world applications, they frequently lead to irreducible complexity: most of the high-value targets will have a vast number of internal states and possible execution paths, and deciding which ones are interesting and substantially different from the rest is an extremely difficult challenge that, if not solved, usually causes the "smart" fuzzer to perform no better than a traditional one.
 
 ==About AFL==
 
@@ -32,7 +32,7 @@ In essence, the fuzzer instruments every effective line of C or C++ code to reco
   <ID of current code location>, <ID of previously-executed code location>
 }}}
 
-The ordering or hit count for each tuple is discarded; the only signal used by the fuzzer is the appearance of a previously-unseen tuple in the output dataset. This method combines the self-limiting nature of simple coverage measurements with the sensitivity of control flow analysis.
+The ordering or hit count for each tuple is discarded; the primary signal used by the fuzzer is the appearance of a previously-unseen tuple in the output dataset; this is also coupled with coarse magnitude count for tuple hit rate. This method combines the self-limiting nature of simple coverage measurements with the sensitivity of control flow analysis. It detects both explicit conditional branches, and indirect variations in the behavior of the tested app.
 
 The instrumentation is used as a part of a simple, vaguely "genetic" algorithm:
 
@@ -41,6 +41,8 @@ The instrumentation is used as a part of a simple, vaguely "genetic" algorithm:
   # Repeatedly mutate the file using a balanced variety of traditional fuzzing strategies,
   # If any of the generated mutations resulted in a new tuple being recorded by the instrumentation, add mutated output as a new entry in the queue.
   # Go to 2.
+
+The discovered test cases are also periodically culled to eliminate ones that have been made obsolete by more inclusive finds discovered later in the fuzzing process. Because of this, the fuzzer is useful not only for identifying crashes, but is exceptionally effective at turning a single valid input file into a reasonably-sized corpus of interesting test cases that can be manually investigated for non-crashing problems, or used to stress-test applications that are harder to instrument or too slow to fuzz efficiently. In particular, it can be extremely useful for generating small test sets that may be programatically or manually examined for anomalies in a browser environment.
 
 In real-world testing with libraries such as gzip, libjpeg, libpng, libtiff, or
 giflib, the fuzzer requires no fine-tuning, and significantly outperforms

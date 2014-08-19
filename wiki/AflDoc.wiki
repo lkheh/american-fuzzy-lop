@@ -20,7 +20,7 @@ There have been numerous attempts to solve this problem by augmenting the proces
 
 The first technique is surprisingly powerful when used to pre-select initial test cases from a massive corpus of valid data - say, the result of a large-scale web crawl. Unfortunately, coverage measurements provide only a very simplistic view of the internal state of the program, making them less suited for creatively guiding the fuzzing process later on.
 
-The latter two techniques are extremely promising in experimental settings. That said, in real-world applications, they frequently lead to irreducible complexity: most of the high-value targets will have a vast number of internal states and possible execution paths, and deciding which ones are interesting and substantially different from the rest is an extremely difficult challenge that, if not solved, usually causes the "smart" fuzzer to perform no better than a traditional one.
+The latter two techniques are extremely promising in experimental settings. That said, in real-world applications, they can be not only very slow, but frequently lead to irreducible complexity: most of the high-value targets will have a vast number of internal states and possible execution paths, and deciding which ones are interesting and substantially different from the rest is an extremely difficult challenge that, if not solved, usually causes the "smart" fuzzer to perform no better than a traditional one.
 
 ==About AFL==
 

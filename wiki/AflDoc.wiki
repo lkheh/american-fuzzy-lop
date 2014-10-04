@@ -24,7 +24,7 @@ The latter two techniques are extremely promising in experimental settings. That
 
 ==About AFL==
 
-_American fuzzy lop_ uses a form of Markov chains to detect subtle, local-scale changes to program control flow without having to perform a complex comparisons between series of distinctive traces (a common failure point for other tools).
+_American fuzzy lop_ uses edge coverage to detect subtle, local-scale changes to program control flow without having to perform a complex comparisons between series of distinctive traces (a common failure point for other tools).
 
 In essence, the fuzzer instruments every effective line of C or C++ code to record a tuple in the following format:
 

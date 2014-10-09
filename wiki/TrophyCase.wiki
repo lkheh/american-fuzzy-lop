@@ -1,0 +1,27 @@
+#summary american fuzzy lop: trophy case
+
+=american fuzzy lop: trophy case=
+
+Although afl has quite a few external users, my own experiments are usually limited to recreational, single-machine, "vanilla" runs against some of the more difficult or better-fuzzed targets - say, IJG jpeg.
+
+So far, this process has yielded in a couple of interesting finds that probably wouldn't be as easy to spot with traditional tools:
+
+  * <b><a href='http://seclists.org/fulldisclosure/2013/Nov/83'>CVE-2013-6629</a></b>: JPEG SOS uninitialized memory disclosure in IJG jpeg.
+
+  * <b><a href='http://seclists.org/fulldisclosure/2013/Nov/83'>CVE-2013-6630</a></b>: JPEG DHT uninitialized memory disclosure in libjpeg-turbo.
+
+  * <b><a href='http://lcamtuf.blogspot.com/2014/09/cve-2014-1564-uninitialized-memory-when.html'>CVE-2014-1564</a></b>: GIF-related disclosure of uninitialized memory in Firefox.
+
+  * <b><a href='https://bugzilla.mozilla.org/show_bug.cgi?id=1063733'>CVE-2014-1580</a></b>: `<canvas>`-related use of uninitialized memory in Firefox (pending with vendor).
+
+  * <b><a href='http://lcamtuf.blogspot.com/2014/10/bash-bug-how-we-finally-cracked.html'>CVE-2014-6277</a></b>: memory corruption RCE in bash, working around the original "Shellshock" patch.
+
+  * <b><a href='http://lcamtuf.blogspot.com/2014/10/bash-bug-how-we-finally-cracked.html'>CVE-2014-6278</a></b>: command injection RCE in bash, working around the original "Shellshock" patch.
+
+  * <b><a href='https://bugzilla.mozilla.org/show_bug.cgi?id=1050342'>Mozilla bug #1050342</a></b>: Probably libjpeg-turbo related use of uninitialized memory in Chrome (pending with vendor).
+
+  * <b><a href='https://code.google.com/p/chromium/issues/detail?id=398235'>Chrome bug #398235</a></b>: Probably libjpeg-turbo related use of uninitialized memory in Chrome (pending with vendor).
+
+  * <b>MSRC 0380191</b>: JPEG-related use of uninitialized memory in Internet Explorer (pending with vendor).
+
+More probably to come.

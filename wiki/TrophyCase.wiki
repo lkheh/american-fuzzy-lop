@@ -24,4 +24,4 @@ So far, this process has yielded in a couple of interesting finds that probably 
 
   * <b>MSRC 0380191</b>: JPEG-related use of uninitialized memory in Internet Explorer (pending with vendor).
 
-More probably to come.
+As the codebase has gotten more mature over the past few months, I've been contemplating setting up afl for continuous fuzzing. So, more probably to come.

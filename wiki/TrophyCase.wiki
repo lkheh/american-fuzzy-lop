@@ -1,4 +1,4 @@
-#summary american fuzzy lop: trophy case
+#summary Fuzzing "trophy case"
 
 =american fuzzy lop: trophy case=
 

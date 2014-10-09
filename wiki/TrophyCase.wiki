@@ -4,7 +4,7 @@
 
 Although afl has quite a few external users, my own experiments are usually limited to recreational, single-machine, "vanilla" runs against some of the more difficult or better-fuzzed targets - say, IJG jpeg.
 
-So far, this process has yielded in a couple of interesting finds that probably wouldn't be as easy to spot with traditional tools:
+So far, this process has yielded in a couple of interesting finds that probably wouldn't be as easy to bump into or isolate with traditional tools:
 
   * <b><a href='http://seclists.org/fulldisclosure/2013/Nov/83'>CVE-2013-6629</a></b>: JPEG SOS uninitialized memory disclosure in IJG jpeg.
 

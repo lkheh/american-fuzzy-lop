@@ -80,7 +80,7 @@ Whenever possible, the file should be reasonably small; under 1 kB is ideal, alt
 
 There is limited value in providing multiple files that are not fundamentally different from each other, and exercise the same set of features. When in doubt, use fewer samples, not more.
 
-If a large corpus of data is available for screening, the `afl-showmap` utility can be employed to compare the instrumentation data recorded for various inputs. Files that not produce any previously-unseen tuples can be usually rejected.
+If a large corpus of data is available for screening, the `afl-showmap` utility can be employed to compare the instrumentation data recorded for various inputs. Files that not produce any previously-unseen tuples can be usually rejected. The fuzzer also performs basic internal de-duplication on its own.
 
 ==Fuzzing instrumented binaries==
 

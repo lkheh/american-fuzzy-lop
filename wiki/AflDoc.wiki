@@ -70,8 +70,6 @@ For C++ programs, it may be necessary to specify `CXX` instead of `CC`. When tes
 
 Setting `AFL_HARDEN` in the environment will cause `afl-gcc` to automatically enable several GCC hardening feeatures that may make it easier to detect memory bugs; with GCC 4.8 and above, this includes [http://www.chromium.org/developers/testing/addresssanitizer ASAN].
 
-Running `prelink` against the target binary may offer performance benefits and has no adverse effects on the instrumentation.
-
 ==Choosing initial test cases==
 
 To operate correctly, the fuzzer requires one or more input file containing a normal, typical input normally processed by the targeted application.

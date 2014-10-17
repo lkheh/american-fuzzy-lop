@@ -56,7 +56,9 @@ The instrumentation has a relatively modest performance impact; in conjunction
 with other optimizations implemented by the tool, many instrumented programs
 can be fuzzed as fast or even faster than possible with traditional tools.
 
-The injected probes are designed to work with C and C++ code compiled on 32-bit x86 platforms. Porting to other platforms, or to binary-only targets, should not be difficult. There are some "unofficial" 64-bit patches in `experimental/64bit`.
+The injected probes are designed to work with C and C++ code compiled on 32-bit
+x86 platforms. You can edit config.h and uncomment USE_64BIT to switch to
+64-bit instrumentation. Porting to other platforms should not be difficult.
 
 The correct way to recompile the target program will vary depending on the specifics of the build process, but a common approach may be:
 
@@ -66,7 +68,9 @@ $ CC=$AFL_PATH/afl-gcc ./configure
 $ make clean all
 }}}
 
-For C++ programs, it may be necessary to specify `CXX` instead of `CC`. When testing libraries, it is essential to either link the tested executable against a static version of the instrumented library (`./configure --disable-shared` may be useful), or to use the right `LD_LIBRARY_PATH`.
+For C++ programs, it may be necessary to specify `CXX` instead of `CC`. When testing libraries, it is essential to either link the tested executable against a static version of the instrumented library (`./configure --disable-shared` may be
+useful), or to use a proper binary (beware of shell script wrappers generated
+by the build system) with the right `LD_LIBRARY_PATH`.
 
 Setting `AFL_HARDEN` in the environment will cause `afl-gcc` to automatically enable several GCC hardening feeatures that may make it easier to detect memory bugs; with GCC 4.8 and above, this includes [http://www.chromium.org/developers/testing/addresssanitizer ASAN].
 
@@ -91,7 +95,11 @@ $ ./afl-fuzz -i input_dir -o output_dir /path/to/program [...params...]
 }}}
 
 For programs that need to read data from a specific file, the appropriate
-path can be specified via the `-f` flag.
+path can be specified via the `-f` flag, e.g.:
+
+{{{
+$ ./afl-fuzz [...] -f testme.txt /path/to/program testme.txt
+}}}
 
 It is possible to fuzz non-instrumented code using the `-n` flag. This gives you a fairly traditional fuzzer with a couple of nice testing strategies.
 
@@ -129,8 +137,10 @@ Here are some of the most important caveats for AFL:
 
   * The fuzzer offers limited coverage if encryption, checksums, cryptographic signatures, or compression are used to wholly wrap the actual data format to be tested.<p>Workarounds include manually commenting out the relevant checks in the instrumented application, or using a wrapper that postprocesses the fuzzer-generated data before feeding it to the target program. As an example, a patch for libpng to bypass CRC checksums is provided in `experimental/libpng/libpng-nocrc.patch`.
 
-  * The included instrumentation (`afl-as.h`) currently supports just 32-bit x86 code. An "unofficial" set of patches to support 64-bit code is included in `experimental/64bit/`.<p>For other CPUs, rewriting the assembly code in `afl-as.h` is necessary, but should be relatively easy.
+  * The included instrumentation (`afl-as.h`) currently supports just 32-bit x86 code, plus its 64-bit version hidden behind a flag in `config.h`.  For other CPUs, rewriting the assembly code in `afl-as.h` is necessary, but should be relatively easy.
 
   * The approach is theoretically compatible with any GCC-supported language, but only C and C++ were confirmed to work. Objective C is very likely to work; reports for other languages (e.g. GCJ Java) are welcome.
 
   * Instrumentation of binary-only code is theoretically possible, but not supported at this point. Leveraging pin or [http://www.dynamorio.org/ DynamoRIO] may be a good approach.
+
+  * Although it is possible to instrument multi-threaded applications, random variations in thread execution order will confuse the fuzzer and probably not yield good results.

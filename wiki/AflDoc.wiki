@@ -26,7 +26,7 @@ The latter two techniques are extremely promising in experimental settings. That
 
 _American fuzzy lop_ uses edge coverage to detect subtle, local-scale changes to program control flow without having to perform a complex comparisons between series of distinctive traces (a common failure point for other tools).
 
-In essence, the fuzzer instruments every effective line of C or C++ code to record a tuple in the following format:
+In essence, the fuzzer instruments the code to record tupes in the following format:
 
 {{{
   <ID of current code location>, <ID of previously-executed code location>
@@ -52,7 +52,9 @@ coverage-only tools - and typically produces compact, low-noise test cases. Usin
 
 Instrumentation is injected by a companion tool called `afl-gcc`. It is meant to be used as a drop-in replacement for GCC, directly pluggable into the standard build process for any third-party code.
 
-The instrumentation has a relatively modest performance impact; for example, instrumenting gzip slows down the fuzzing process by less than 30%, compared to non-instrumented code.
+The instrumentation has a relatively modest performance impact; in conjunction
+with other optimizations implemented by the tool, many instrumented programs
+can be fuzzed as fast or even faster than possible with traditional tools.
 
 The injected probes are designed to work with C and C++ code compiled on 32-bit x86 platforms. Porting to other platforms, or to binary-only targets, should not be difficult. There are some "unofficial" 64-bit patches in `experimental/64bit`.
 

@@ -34,9 +34,9 @@ This page provides an overview for each of the displayed stats.
 
 ==Process timing==
 
-This section is fairly self-explanatory: it tells you how run the fuzzer has been running and how much time has elapsed since its most recent finds: "paths" (a shorthand for test cases that trigger new execution paths), crashes, and hangs.
+This section is fairly self-explanatory: it tells you how run the fuzzer has been running and how much time has elapsed since its most recent finds. This is broken down into "paths" (a shorthand for test cases that trigger new execution patterns), crashes, and hangs.
 
-When it comes to timing: there is no hard rule, but most fuzzing jobs should be expected to run for days or weeks. Some run for months.
+When it comes to timing: there is no hard rule, but most fuzzing jobs should be expected to run for days or weeks; every now and then, some will be allowed to run for months.
 
 There's one important thing to watch out for: if the tool is not finding new paths within several minutes of starting, you're probably not invoking the target binary correctly and it never gets to parse the input files we're throwing at it. If that's the case, you will eventually see a big red warning in this section, too.
 
@@ -52,11 +52,13 @@ This tells you how far along the fuzzer is with the current queue cycle: the tes
 
 ==Map coverage==
 
-The section provides some trivia about the instrumentation embedded in the target binary. The first one tells you how many branch tuples we have already hit, in proportion to how much the bitmap can hold (ideally, this should be between 5 and 30%). The other deals with the variability in tuple hit counts.
+The section provides some trivia about the instrumentation embedded in the target binary. The first one tells you how many branch tuples we have already hit, in proportion to how much the bitmap can hold (ideally, this should be between 5 and 30%). The other deals with the variability in tuple hit counts. If we are seeing just one hit count per each tuple, this will read 1; if we're seeing full ranges everywhere, it will go up to 8.
 
 ==Stage progress==
 
 This is the in-depth peek at what the fuzzer is actually doing right now. It tells you about the current stage, which can be any of:
+
+  * `init` - if you see this, you're pretty amazing, because it flashes on the screen for a millisecond or so.
 
   * `calibration` - a pre-fuzzing stage where the execution path is examined to detect anomalies.
 
@@ -72,18 +74,20 @@ This is the in-depth peek at what the fuzzer is actually doing right now. It tel
 
 The remaining fields should be fairly self-evident: there's the exec count progress indicator for the current stage, a global exec counter, and a benchmark for program execution speed. That benchmark should be ideally over 500 execs/sec - and if it drops below 100, the job will probably take very long time.
 
+The fuzzer will explicitly warn you about slow targets, too. Possible ideas include setting more aggressive timeouts, using simpler test cases, or using `strace` on the target binary to figure out what the bottlenecks are. If all else fails, running `afl-fuzz` with the `-d` option may offer relief.
+
 ==Findings in depth==
 
-This gives you several metrics that are of interest mostly to complete nerds, including the number of paths that the fuzzer likes the most based on a minimization algorithm baked into the code (these will get more air time), the number of test cases that actually result in better edge coverage (versus just pushing the hit counters up), and additional counters for crashes and hangs.
+This gives you several metrics that are of interest mostly to complete nerds. The section includes the number of paths that the fuzzer likes the most based on a minimization algorithm baked into the code (these will get more air time), the number of test cases that actually result in better edge coverage (versus just pushing the hit counters up), and additional counters for crashes and hangs.
 
 ==Fuzzing strategy yields==
 
-Another nerd-targeted section keeping track of how many paths do we get, in proportion to the number of execs attempted, for every fuzzing strategy. This mostly serves to scientifically validate assumptions about the usefulness of the approaches taken by `afl-fuzz`.
+This is just another nerd-targeted section keeping track of how many paths we have netted, in proportion to the number of execs attempted, for each and fuzzing strategy discussed above. This serves to scientifically validate assumptions about the usefulness of the approaches taken by `afl-fuzz`.
 
 ==Path geometry==
 
-The first field here tracks the depth reached by the guided fuzzing process. In essence: the initial test cases supplied by the user are considered "level 1". The test cases that can be derived from that through traditional fuzzing are considered "level 2"; the ones derived by using these as inputs to subsequent fuzzing rounds are "level 3", etc. This is a rough proxy for how much value you're getting out of the instrumentation-guided approach taken by `afl-fuzz`.
+The first field here tracks the path depth reached through the guided fuzzing process. In essence: the initial test cases supplied by the user are considered "level 1". The test cases that can be derived from that through traditional fuzzing are considered "level 2"; the ones derived by using these as inputs to subsequent fuzzing rounds are "level 3"; and so forth. The maximum depth is therefore a rough proxy for how much value you're getting out of the instrumentation-guided approach taken by `afl-fuzz`.
 
-The remaining fields indicate the number of inputs that have not gone through any fuzzing yet, and the same stat for "favored" entries that the fuzzer really wants to get to soon; the number of latent entries discovered after the first queue cycle; and the number of paths that seemingly result in variable behavior in the tested binary.
+The next field shows you the number of inputs that have not gone through any fuzzing yet. The same stat is also given for "favored" entries that the fuzzer really wants to get to soon. Next, we have the number of latent entries discovered after the first queue cycle; and the number of paths that seemingly result in variable behavior in the tested binary.
 
-That last bit is actually fairly interesting: intentional variations are possible, but tend to be very rare; in most cases, it may be a sign of unintentional randomness caused by factors such as ASLR.
+That last bit is actually fairly interesting: intentional variations - e.g., due to the explicit use of randomness - are possible, but tend to be very rare; in most cases, it may be a sign of unintentional randomness caused by the use of uninitialized memory in presence of ASLR.

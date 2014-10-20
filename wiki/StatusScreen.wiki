@@ -44,6 +44,8 @@ There's one important thing to watch out for: if the tool is not finding new pat
 
 The first field in this section gives you the count of queue passes done so far - that is, the number of times the fuzzer went over all the interesting test cases, fuzzed them, and looped back. Every fuzzing session should be allowed to complete at least one cycle - and ideally, much more than that.
 
+The value is color-coded to help you decide when to stop. It is shown in magenta during the first round, progresses to yellow if finds are still being made in every round, turns blue when this ends, and finally green after the fuzzer sees no action for a longer while.
+
 The remaining fields should be pretty obvious: there's the number of test cases ("paths") discovered so far, and the number of unique faults. The test cases, crashes, and hangs can be explored in real-time by browsing the output directory.
 
 ==Cycle progress==

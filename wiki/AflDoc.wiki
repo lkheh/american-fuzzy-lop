@@ -109,7 +109,10 @@ The fuzzing process itself is relatively simple. It consists of several types of
 
 The deterministic stage takes time proportional to the size of the input file; once this is done, the havoc stages continue for every discovered input until Ctrl-C is hit.
 
-For large inputs, or when trying to distribute the fuzzing process, you can use `-d` to skip the deterministic stages and proceed straight to random tweaks.
+For large inputs, you can use `-d` to skip the deterministic stages and proceed straight to random tweaks. Some other tips for optimizing the performance of
+the process are discussed in the `perf_tips.txt` file included with the source
+code of AFL.
+
 
 ==Interpreting output==
 
@@ -128,6 +131,11 @@ There are three subdirectories created within the output directory:
 In all three directories, the first segment of every file name is a sequential ID of the generated test case, and the second one corresponds to the "parent" queue entry that the entry is derived from.
 
 Although the fuzzer does not perform any additional analysis of the discovered crashes, the path-based grouping makes it easy to triage new finds manually - or to examine them with a simple GDB script. One such script is provided in `experimental/gdb/`.
+
+==Parallelized fuzzing==
+
+For tips on how to fuzz a common target on multiple cores or multiple networked
+machines, please refer to the `parallel_fuzzing.txt` file included with the source code of American Fuzzy Lop.
 
 ==Known limitations==
 

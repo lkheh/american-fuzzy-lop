@@ -24,7 +24,7 @@ So far, this process has yielded in a couple of interesting finds that probably 
 
   * <b><a href='http://lcamtuf.blogspot.com/2014/10/two-more-browser-memory-disclosure-bugs.html'>MSRC 0380191</a></b>: apparent JPEG DHT-related use of uninitialized memory in Internet Explorer.
 
-  * <b><a href='https://sourceware.org/bugzilla/show_bug.cgi?id=17510'>Arbitrary memory access</a></b> bug in `/usr/bin/strings`.
+  * <b><a href='http://lcamtuf.blogspot.com/2014/10/psa-dont-run-strings-on-untrusted-files.html'>Arbitrary memory access</a></b> bug in `/usr/bin/strings`.
 
   * Several pending issues in compression utilities.
 

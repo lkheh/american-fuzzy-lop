@@ -68,7 +68,13 @@ $ CC=$AFL_PATH/afl-gcc ./configure
 $ make clean all
 }}}
 
-For C++ programs, it may be necessary to specify `CXX` instead of `CC`. When testing libraries, it is essential to either link the tested executable against a static version of the instrumented library (`./configure --disable-shared` may be
+For C++ programs, it may be necessary to instead specify:
+
+{{{
+$ CXX=$AFL_PATH/afl-g++ ./configure
+}}}
+
+When testing libraries, it is essential to either link the tested executable against a static version of the instrumented library (`./configure --disable-shared` may be
 useful), or to use a proper binary (beware of shell script wrappers generated
 by the build system) with the right `LD_LIBRARY_PATH`.
 

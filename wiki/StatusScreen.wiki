@@ -38,7 +38,9 @@ This section is fairly self-explanatory: it tells you how run the fuzzer has bee
 
 When it comes to timing: there is no hard rule, but most fuzzing jobs should be expected to run for days or weeks; every now and then, some will be allowed to run for months.
 
-There's one important thing to watch out for: if the tool is not finding new paths within several minutes of starting, you're probably not invoking the target binary correctly and it never gets to parse the input files we're throwing at it. If that's the case, you will eventually see a big red warning in this section, too.
+There's one important thing to watch out for: if the tool is not finding new paths within several minutes of starting, you're probably not invoking the target binary correctly and it never gets to parse the input files we're throwing at it; another possible explanation is that the default memory limit (`-m`) is too restrictive, and the program exits after failing to allocate a buffer very early on.
+
+If there are no new paths showing up for a while, you will eventually see a big red warning in this section, too.
 
 ==Overall results==
 

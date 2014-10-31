@@ -58,7 +58,7 @@ can be fuzzed as fast or even faster than possible with traditional tools.
 
 The injected probes are designed to work with C and C++ code compiled on 32-bit
 x86 platforms. You can edit config.h and uncomment USE_64BIT to switch to
-64-bit instrumentation. Porting to other platforms should not be difficult.
+64-bit instrumentation. Porting to other platforms should not be difficult; in fact, there is an early-stage ARM port in `experimental/arm_support/`.
 
 The correct way to recompile the target program will vary depending on the specifics of the build process, but a common approach may be:
 
@@ -151,7 +151,7 @@ Here are some of the most important caveats for AFL:
 
   * The fuzzer offers limited coverage if encryption, checksums, cryptographic signatures, or compression are used to wholly wrap the actual data format to be tested.<p>Workarounds include manually commenting out the relevant checks in the instrumented application, or using a wrapper that postprocesses the fuzzer-generated data before feeding it to the target program. As an example, a patch for libpng to bypass CRC checksums is provided in `experimental/libpng/libpng-nocrc.patch`.
 
-  * The included instrumentation (`afl-as.h`) currently supports just 32-bit x86 code, plus its 64-bit version hidden behind a flag in `config.h`.  For other CPUs, rewriting the assembly code in `afl-as.h` is necessary, but should be relatively easy.
+  * The included instrumentation (`afl-as.h`) currently supports just 32-bit x86 code, plus its 64-bit version hidden behind a flag in `config.h`.  If you are feeling adventurous, an experimental ARM port can be found in `experimental/arm_support/`, too.
 
   * The approach is theoretically compatible with any GCC-supported language, but only C and C++ were confirmed to work. Objective C is very likely to work; reports for other languages (e.g. GCJ Java) are welcome.
 

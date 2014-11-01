@@ -63,15 +63,14 @@ x86 platforms. You can edit config.h and uncomment USE_64BIT to switch to
 The correct way to recompile the target program will vary depending on the specifics of the build process, but a common approach may be:
 
 {{{
-$ export AFL_PATH=/path/to/afl/
-$ CC=$AFL_PATH/afl-gcc ./configure
+$ CC=/path/to/afl/afl-gcc ./configure
 $ make clean all
 }}}
 
 For C++ programs, it may be necessary to instead specify:
 
 {{{
-$ CXX=$AFL_PATH/afl-g++ ./configure
+$ CXX=/path/to/afl/afl-g++ ./configure
 }}}
 
 When testing libraries, it is essential to either link the tested executable against a static version of the instrumented library (`./configure --disable-shared` may be

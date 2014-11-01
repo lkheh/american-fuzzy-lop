@@ -158,3 +158,5 @@ Here are some of the most important caveats for AFL:
   * Instrumentation of binary-only code is theoretically possible, but not supported at this point. Leveraging pin or [http://www.dynamorio.org/ DynamoRIO] may be a good approach.
 
   * Although it is possible to instrument multi-threaded applications, random variations in thread execution order will confuse the fuzzer and probably not yield good results.
+
+  * Some fraction of build systems may malfunction when `afl-gcc` or `afl-as` write anything to stderr, even if compilation succeeds. If you're running into build issues, try setting and exporting `AFL_QUIET=1` first, then run `make distclean`, `./configure`, and `make clean all` again.

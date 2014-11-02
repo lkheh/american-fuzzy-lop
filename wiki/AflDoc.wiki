@@ -14,9 +14,9 @@ There have been numerous attempts to solve this problem by augmenting the proces
 
   * Simple coverage maximization. This approach boils down to trying to isolate initial test cases that offer diverse code coverage in the targeted application - and them fuzzing them using conventional techniques.
 
-  * Control flow analysis. A more sophisticated technique that leverages instrumented binaries to focus the fuzzing efforts on mutations that generate distinctive sequences of conditional branches within the instrumented binary.
+  * Dynamic control flow analysis. A more sophisticated technique that leverages instrumented binaries to focus the fuzzing efforts on mutations that produce noteworthy internal states within the instrumented binary.
 
-  * Static analysis. An approach that attempts to reason about potentially interesting states within the tested program and then make educated guesses about the input values that could possibly trigger them.
+  * Static analysis / symbolic execution. An approach that attempts to reason about potentially interesting states within the tested program and then make educated guesses about the input values that could possibly trigger them.
 
 The first technique is surprisingly powerful when used to pre-select initial test cases from a massive corpus of valid data - say, the result of a large-scale web crawl. Unfortunately, coverage measurements provide only a very simplistic view of the internal state of the program, making them less suited for creatively guiding the fuzzing process later on.
 
@@ -42,11 +42,25 @@ The instrumentation is used as a part of a simple, vaguely "genetic" algorithm:
   # If any of the generated mutations resulted in a new tuple being recorded by the instrumentation, add mutated output as a new entry in the queue.
   # Go to 2.
 
-The discovered test cases are also periodically culled to eliminate ones that have been made obsolete by more inclusive finds discovered later in the fuzzing process. Because of this, the fuzzer is useful not only for identifying crashes, but is exceptionally effective at turning a single valid input file into a reasonably-sized corpus of interesting test cases that can be manually investigated for non-crashing problems, handed over to `valgrind`, or used to stress-test applications that are harder to instrument or too slow to fuzz efficiently. In particular, it can be extremely useful for generating small test sets that may be programatically or manually examined for anomalies in a browser environment.
+The discovered test cases are also periodically culled to eliminate ones that
+have been made obsolete by more inclusive finds discovered later in the
+fuzzing process. Because of this, the fuzzer is useful not only for
+identifying crashes, but is exceptionally effective at turning a single valid
+input file into a reasonably-sized corpus of interesting test cases that can
+be manually investigated for non-crashing problems, or used to stress-test
+applications that are too slow to be fuzzed efficiently, or to test for
+conditions that are difficult to instrument.
 
-In real-world testing with libraries such as gzip, libjpeg, libpng, libtiff, or
-giflib, the fuzzer requires no fine-tuning, and significantly outperforms
-coverage-only tools - and typically produces compact, low-noise test cases. Using a common set of strategies against libjpeg, the tool toggles twice as many branches as non-instrumented fuzzing (`IGNORE_FINDS` in `config.h`) and identifies around 40% more distinctive test cases than coverage-based algorithms (`COVERAGE_ONLY` in `config.h`).
+In particular, it can be very valuable for generating small test sets that
+may be examined for anomalies in the browser environment; in "thick" apps
+such as Adobe Photoshop or Microsoft Office; or when running under Valgrind.
+
+In real-world testing with libraries such as libjpeg, libpng, libtiff, libbfd,
+or libbz2, the fuzzer requires no fine-tuning, and significantly outperforms
+blind fuzzing or coverage-only tools. Using a common set of strategies against
+libjpeg, the tool toggles twice as many branches as non-instrumented fuzzing
+(`IGNORE_FINDS` in `config.h`) and identifies several times as many distinctive
+test cases than coverage-based algorithms (`COVERAGE_ONLY` in `config.h`).
 
 ==Instrumenting programs for use with AFL==
 

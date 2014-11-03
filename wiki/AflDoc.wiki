@@ -158,10 +158,10 @@ Here are some of the most important caveats for AFL:
 
   * The included instrumentation (`afl-as.h`) currently supports just 32-bit x86 code, plus its 64-bit version hidden behind a flag in `config.h`.  If you are feeling adventurous, an experimental ARM port can be found in `experimental/arm_support/`, too.
 
-  * The approach is theoretically compatible with any GCC-supported language, but only C and C++ were confirmed to work. Objective C is very likely to work; reports for other languages (e.g. GCJ Java) are welcome.
+  * The approach is theoretically compatible with any GCC-supported language, but only C and C++ were confirmed to work. Objective C is very likely to work; reports for other languages (e.g. GCJ Java) are welcome. The same goes for testing on non-Linux platforms.
 
-  * Instrumentation of binary-only code is theoretically possible, but not supported at this point. Leveraging pin or [http://www.dynamorio.org/ DynamoRIO] may be a good approach.
+  * Instrumentation of binary-only code is possible, but not supported at this point. Leveraging pin or [http://www.dynamorio.org/ DynamoRIO] may be a good approach.
 
-  * Although it is possible to instrument multi-threaded applications, random variations in thread execution order will confuse the fuzzer and probably not yield good results.
+  * Although it is possible to instrument multi-threaded applications, the instrumentation isn't designed for this. Random variations in thread execution order may confuse the fuzzer and probably not yield good results.
 
   * Some fraction of build systems may malfunction when `afl-gcc` or `afl-as` write anything to stderr, even if compilation succeeds. If you're running into build issues, try setting and exporting `AFL_QUIET=1` first, then run `make distclean`, `./configure`, and `make clean all` again.

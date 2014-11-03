@@ -66,7 +66,7 @@ with other optimizations implemented by the tool, many instrumented programs
 can be fuzzed as fast or even faster than possible with traditional tools.
 
 The injected probes are designed to work with C and C++ code compiled on 32-bit
-x86 platforms. You can edit config.h and uncomment USE_64BIT to switch to
+x86 platforms. You can edit `config.h` and uncomment `USE_64BIT` to switch to
 64-bit instrumentation. Porting to other platforms should not be difficult; in fact, there is an early-stage ARM port in `experimental/arm_support/`.
 
 The correct way to recompile the target program will vary depending on the specifics of the build process, but a common approach may be:

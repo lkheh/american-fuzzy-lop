@@ -26,7 +26,8 @@ The latter two techniques are extremely promising in experimental settings. That
 
 _American fuzzy lop_ uses edge coverage to rapidly detect subtle, local-scale changes to program control flow without having to perform a complex comparisons between series of distinctive traces (a common failure point for other tools).
 
-In essence, the fuzzer instruments the code to record tupes in the following format:
+In almost-plain English, the fuzzer does this by augmenting the tested code with very lightweight, assembly-level instrumentation that records tuples in the following format:
+
 
 {{{
   <ID of current code location>, <ID of previously-executed code location>

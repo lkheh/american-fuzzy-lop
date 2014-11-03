@@ -12,7 +12,7 @@ Fuzzing is one of the most powerful strategies for identifying security issues i
 
 There have been numerous attempts to solve this problem by augmenting the process with additional information about the behavior of the tested code. These techniques can be divided into three broad groups:
 
-  * Simple coverage maximization. This approach boils down to trying to isolate initial test cases that offer diverse code coverage in the targeted application - and them fuzzing them using conventional techniques.
+  * Simple coverage maximization. This approach boils down to trying to isolate initial test cases that offer diverse code coverage in the targeted application - and then fuzzing them using conventional techniques.
 
   * Dynamic control flow analysis. A more sophisticated technique that leverages instrumented binaries to focus the fuzzing efforts on mutations that produce noteworthy internal states within the instrumented binary.
 

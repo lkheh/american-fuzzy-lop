@@ -137,7 +137,7 @@ There are three subdirectories created within the output directory:
 
   * `hangs/` - test cases that cause the tested program to time out. The entries are grouped by a 32-bit hash of the execution path.
 
-  * `crashes/` - test cases that caused the tested program to receive a fatal signal (e.g., SIGSEGV, SIGILL, SIGABRT). The entries are grouped by the received signal, followed by the hash of the execution path.
+  * `crashes/` - test cases that caused the tested program to receive a fatal signal (e.g., `SIGSEGV`, `SIGILL`, `SIGABRT`). The entries are grouped by the received signal, followed by the hash of the execution path.
 
 In all three directories, the first segment of every file name is a sequential ID of the generated test case, and the second one corresponds to the "parent" queue entry that the entry is derived from.
 

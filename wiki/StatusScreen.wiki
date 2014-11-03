@@ -98,4 +98,4 @@ The next field shows you the number of inputs that have not gone through any fuz
 
 That last bit is actually fairly interesting: intentional variations - e.g., due to the explicit use of randomness - are possible, but tend to be very rare; in most cases, it may be a sign of unintentional randomness caused by the use of uninitialized memory in presence of ASLR.
 
-One quasi-common situation where variability can arise without indicating a security problem are utilities that create and then leave behind files (e.g., `tar -xf`, `unzip`, etc). On subsequent runs, when a file already exists, the program may detect that and take a different code path.
+One quasi-common situation where variability can arise without indicating a security problem are utilities that create and then leave behind files (e.g., `tar -xf`, `unzip`, `convert foo.png bar.gif`, etc). On subsequent runs, when a file already exists, the program may detect that and take a different code path.

@@ -127,8 +127,8 @@ code of AFL.
 
 ==Interpreting output==
 
-The fuzzer keeps going until aborted with Ctrl-C or killed with SIGINT or
-SIGTERM. The progress screen provides [https://code.google.com/p/american-fuzzy-lop/wiki/StatusScreen various useful stats], including the
+The fuzzer keeps going until aborted with `Ctrl-C` or killed with `SIGINT` or
+`SIGTERM`. The progress screen provides [https://code.google.com/p/american-fuzzy-lop/wiki/StatusScreen various useful stats], including the
 number of distinctive execution paths discovered, the current queue cycle, the number of crashes recorded, and the number of `execve()` calls per second.
 
 There are three subdirectories created within the output directory:

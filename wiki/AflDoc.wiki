@@ -119,14 +119,11 @@ It is possible to fuzz non-instrumented code using the `-n` flag. This gives you
 
 You can use `-t` and `-m` to override the default timeout and memory limit for the executed process, although this is seldom necessary.
 
-The fuzzing process itself is relatively simple. It consists of several types of sequential, deterministic operations (bitflips, injection of interesting integers) followed by a "havoc" stage with multiple stacked, random modifications - block deletion, cloning, random bitflips, etc.
-
-The deterministic stage takes time proportional to the size of the input file; once this is done, the havoc stages continue for every discovered input until Ctrl-C is hit.
+The fuzzing process itself is relatively simple. It consists of several types of sequential, deterministic operations (bitflips, injection of interesting integers) followed by a "havoc" stage with multiple stacked, random modifications - block deletion, cloning, random bitflips, etc. The deterministic stage takes time proportional to the size of the input file; once this is done, the havoc stages continue for every discovered input until `Ctrl-C` is hit.
 
 For large inputs, you can use `-d` to skip the deterministic stages and proceed straight to random tweaks. Some other tips for optimizing the performance of
 the process are discussed in the `perf_tips.txt` file included with the source
 code of AFL.
-
 
 ==Interpreting output==
 

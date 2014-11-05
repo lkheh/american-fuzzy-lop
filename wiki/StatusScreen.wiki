@@ -96,6 +96,12 @@ The first field here tracks the path depth reached through the guided fuzzing pr
 
 The next field shows you the number of inputs that have not gone through any fuzzing yet. The same stat is also given for "favored" entries that the fuzzer really wants to get to soon. Next, we have the number of latent entries discovered after the first queue cycle; and the number of paths that seemingly result in variable behavior in the tested binary.
 
-That last bit is actually fairly interesting: intentional variations - e.g., due to the explicit use of randomness - are possible, but tend to be very rare; in most cases, it may be a sign of unintentional randomness caused by the use of uninitialized memory in presence of ASLR.
+That last bit is actually fairly interesting. There are three quasi-common explanations for variable behavior of the tested program:
 
-One quasi-common situation where variability can arise without indicating a security problem are utilities that create and then leave behind files (e.g., `tar -xf`, `unzip`, `convert foo.png bar.gif`, etc). On subsequent runs, when a file already exists, the program may detect that and take a different code path.
+   * Use of uninitialized memory in conjunction with ASLR or other sources of entropy in the process. This can be indicative of a security bug.
+
+   * Multiple threads executing at once. To avoid problems, it's best to restrict instrumented programs to a single thread. Check compile- and run-time options - for example, with ImageMagick, this can be done with `MAGICK_THREAD_LIMIT=1`.
+
+   * Attempts to overwrite files left over after previous runs. This is harmless, but you may want to instruct the targeted program to write to `stdout` or to `/dev/null` to avoid surprises.
+
+Less likely causes may include running out of disk space, SHM handles, or other globally limited resources; or the program being intentionally designed to behave randomly.

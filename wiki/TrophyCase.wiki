@@ -14,6 +14,8 @@ So far, this process has yielded in a couple of interesting finds that probably 
 
   * <b><a href='http://lcamtuf.blogspot.com/2014/10/two-more-browser-memory-disclosure-bugs.html'>CVE-2014-1580</a></b>: `<canvas>`-related use of uninitialized memory in Firefox.
 
+  * <b><a href='https://bugzilla.mozilla.org/show_bug.cgi?id=1094536'>Mozilla bug #1094536</a></b>: BMP-related disclosure of uninitialized memory in Firefox (pending with vendor).
+
   * <b><a href='http://lcamtuf.blogspot.com/2014/10/bash-bug-how-we-finally-cracked.html'>CVE-2014-6277</a></b>: memory corruption RCE in bash, working around the original "Shellshock" patch.
 
   * <b><a href='http://lcamtuf.blogspot.com/2014/10/bash-bug-how-we-finally-cracked.html'>CVE-2014-6278</a></b>: command injection RCE in bash, working around the original "Shellshock" patch.

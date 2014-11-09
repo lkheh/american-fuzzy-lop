@@ -20,7 +20,7 @@ So far, this process has yielded in a couple of interesting finds that probably 
 
   * <b><a href='http://lcamtuf.blogspot.com/2014/10/bash-bug-how-we-finally-cracked.html'>CVE-2014-6278</a></b>: command injection RCE in bash, working around the original "Shellshock" patch.
 
-  * <b><a href='https://bugzilla.mozilla.org/show_bug.cgi?id=1050342'>Mozilla bug #1050342</a></b>: Probably libjpeg-turbo related use of uninitialized memory in Chrome (pending with vendor).
+  * <b><a href='https://bugzilla.mozilla.org/show_bug.cgi?id=1050342'>Mozilla bug #1050342</a></b>: Probably libjpeg-turbo related use of uninitialized memory in Firefox (pending with vendor).
 
   * <b><a href='https://code.google.com/p/chromium/issues/detail?id=398235'>Chrome bug #398235</a></b>: Probably libjpeg-turbo related use of uninitialized memory in Chrome (pending with vendor).
 

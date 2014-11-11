@@ -142,7 +142,7 @@ There are three subdirectories created within the output directory:
 
 In all three directories, the first segment of every file name is a sequential ID of the generated test case, and the second one corresponds to the "parent" queue entry that the entry is derived from.
 
-Although the fuzzer does not perform any additional analysis of the discovered crashes, the path-based grouping makes it easy to triage new finds manually - or to examine them with a simple GDB script. One such script is provided in `experimental/gdb/`.
+Although the fuzzer does not perform any additional analysis of the discovered crashes, the path-based grouping makes it easy to triage new finds manually - or to examine them with a simple GDB script. One such script is provided in `experimental/crash_triage/`.
 
 ==Parallelized fuzzing==
 

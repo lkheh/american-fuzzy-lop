@@ -2,7 +2,7 @@
 
 =american fuzzy lop: one-page "sales pitch"=
 
-In a hurry? There are several reasons why you may want to give `afl-fuzz` a try:
+In a hurry? There are several bite-sized reasons why you may want to give `afl-fuzz` a try:
 
   * <b>It is pretty sophisticated.</b> It's an instrumentation-guided genetic fuzzer capable of <a href='http://lcamtuf.blogspot.com/2014/11/pulling-jpegs-out-of-thin-air.html'>synthesizing complex file semantics</a> on the fly. Just as importantly, it is shown to <a href='https://code.google.com/p/american-fuzzy-lop/wiki/TrophyCase'>find real bugs</a>.
 

@@ -16,4 +16,4 @@ In a hurry? There are several reasons why you may want to give `afl-fuzz` a try:
 
   * <b>It's chainable.</b> The tool generates superior, compact <a href='http://lcamtuf.coredump.cx/afl_demo/'>test corpuses</a> as a seed for more specialized processes and tools.
 
-Want to give it a try? Check out the <a href='https://code.google.com/p/american-fuzzy-lop/wiki/AflDoc'>documentation</a> or grab the <a href='http://lcamtuf.coredump.cx/afl.tgz'>source code</a> right away!
+Want to try it out? Check out the <a href='https://code.google.com/p/american-fuzzy-lop/wiki/AflDoc'>documentation</a> or grab the <a href='http://lcamtuf.coredump.cx/afl.tgz'>source code</a> right away!

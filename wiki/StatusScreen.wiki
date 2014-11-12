@@ -25,8 +25,9 @@ When running `afl-fuzz`, the status screen should look roughly the following way
 │   bit flips : 57/289k, 18/289k, 18/288k             │   levels : 5           │
 │  byte flips : 0/36.2k, 4/35.7k, 7/34.6k             │  pending : 1570        │
 │ arithmetics : 53/2.54M, 0/537k, 0/55.2k             │ pend fav : 583         │
-│  known ints : 8/322k, 12/1.32M, 10/1.70M            │   latent : 0           │
+│  known ints : 8/322k, 12/1.32M, 10/1.70M            │ imported : 0           │
 │       havoc : 1903/20.0M, 0/0                       │ variable : 0           │
+│        trim : 139.4kB/9201 (20.31% gain)            │   latent : 0           │
 └─────────────────────────────────────────────────────┴────────────────────────┘
 }}}
 
@@ -66,6 +67,8 @@ This is the in-depth peek at what the fuzzer is actually doing right now. It tel
 
   * `calibration` - a pre-fuzzing stage where the execution path is examined to detect anomalies.
 
+  * trim L/S - another pre-fuzzing stage where the test case is trimmed to the shortest form that still produces the same execution path. The length (L) and stepover (S) are chosen in general relationship to file size.
+
   * `bitflip L/S` - deterministic bit flips. There are L bits toggled at any given time, walking the input file at S-bit increments. The current L/S variants are: 1/1, 2/1, 4/1, 8/8, 16/8, 32/8.
 
   * `arith L/8` - deterministic arithmetics. The fuzzer tries to subtract or add small integers to 8-, 16-, and 32-bit values. The steopver is always 8 bits.
@@ -90,13 +93,24 @@ This gives you several metrics that are of interest mostly to complete nerds. Th
 
 This is just another nerd-targeted section keeping track of how many paths we have netted, in proportion to the number of execs attempted, for each and fuzzing strategy discussed above. This serves to scientifically validate assumptions about the usefulness of the approaches taken by `afl-fuzz`.
 
+The trim strategy stats in this section are a bit different than the rest.
+It shows the absolute count of removed bytes, the number of execs needed to
+achieve that, and a ratio of bytes removed versus total input processed so far.
+
 ==Path geometry==
 
 The first field here tracks the path depth reached through the guided fuzzing process. In essence: the initial test cases supplied by the user are considered "level 1". The test cases that can be derived from that through traditional fuzzing are considered "level 2"; the ones derived by using these as inputs to subsequent fuzzing rounds are "level 3"; and so forth. The maximum depth is therefore a rough proxy for how much value you're getting out of the instrumentation-guided approach taken by `afl-fuzz`.
 
-The next field shows you the number of inputs that have not gone through any fuzzing yet. The same stat is also given for "favored" entries that the fuzzer really wants to get to soon. Next, we have the number of latent entries discovered after the first queue cycle; and the number of paths that seemingly result in variable behavior in the tested binary.
+The next field shows you the number of inputs that have not gone through any
+fuzzing yet. The same stat is also given for "favored" entries that the fuzzer
+really wants to get to soon. Next, we have the number of paths imported from
+other fuzzer instances when doing parallelized fuzzing; the number of inputs
+that produce seemingly variable behavior in the tested binary; and the number
+of latent entries uncovered after completing the initial pass over the
+queue.
 
-That last bit is actually fairly interesting. There are three quasi-common explanations for variable behavior of the tested program:
+The bit about variable paths is actually fairly interesting. There are three
+quasi-common explanations for variable behavior of the tested program:
 
    * Use of uninitialized memory in conjunction with ASLR or other sources of entropy in the process. This can be indicative of a security bug.
 

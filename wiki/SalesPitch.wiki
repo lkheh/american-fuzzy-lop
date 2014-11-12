@@ -12,7 +12,7 @@ In a hurry? There are several reasons why you may want to give `afl-fuzz` a try:
 
   * <b>It's rock solid.</b> Compared to other instrumentation- or solver-based fuzzers, American Fuzzy Lop has very few failure modes. It also comes with robust troubleshooting capabilities and user-friendly error messages.
 
-  * <b>You can just plug it and play.</b> In contrast to most other fuzzers, the tool requires essentially no configuration work. Even if you wanted to, there are virtually no knobs to adjust.
+  * <b>You don't need to tweak dozens of knobs.</b> In contrast to most other fuzzers, the tool requires essentially no configuration work. Even if you wanted to, there are virtually no parameters to adjust.
 
   * <b>It's chainable.</b> The tool generates superior, compact <a href='http://lcamtuf.coredump.cx/afl_demo/'>test corpuses</a> as a seed for more specialized processes and tools.
 

@@ -93,7 +93,8 @@ Setting `AFL_HARDEN` in the environment will cause `afl-gcc` to automatically en
 
 To operate correctly, the fuzzer requires one or more input file containing a normal, typical input normally processed by the targeted application.
 
-Whenever possible, the file should be reasonably small; under 1 kB is ideal, although not strictly necessary.
+Whenever possible, the file should be reasonably small; under 1 kB is ideal, although not strictly necessary. The fuzzer will also try to automatically
+trim the test cases for you.
 
 There is limited value in providing multiple files that are not fundamentally different from each other, and exercise the same set of features. When in doubt, use fewer samples, not more.
 

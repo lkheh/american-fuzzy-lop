@@ -4,7 +4,7 @@
 
 In a hurry? There are several bite-sized reasons why you may want to give `afl-fuzz` a try:
 
-  * <b>It is pretty sophisticated.</b> It's an instrumentation-guided genetic fuzzer capable of <a href='http://lcamtuf.blogspot.com/2014/11/pulling-jpegs-out-of-thin-air.html'>synthesizing complex file semantics</a> in a wide range of non-trivial targets.
+  * <b>It is pretty sophisticated.</b> It's an instrumentation-guided genetic fuzzer capable of <a href='http://lcamtuf.blogspot.com/2014/11/pulling-jpegs-out-of-thin-air.html'>synthesizing complex file semantics</a> in a wide range of non-trivial targets, lessening the need for syntax-aware tools.
 
   * <b>It has street smarts.</b> It is built around a range of <a href='http://lcamtuf.blogspot.com/2014/08/binary-fuzzing-strategies-what-works.html'>carefully researched</a>, high-gain test case preprocessing and fuzzing strategies rarely employed in this fashion in other fuzzing frameworks. Just as importantly, it is shown to <a href='https://code.google.com/p/american-fuzzy-lop/wiki/TrophyCase'>find real bugs</a>.
 

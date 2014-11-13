@@ -166,4 +166,4 @@ Here are some of the most important caveats for AFL:
 
   * Although it is possible to instrument multi-threaded applications, the instrumentation isn't designed for this. Random variations in thread execution order may confuse the fuzzer and probably not yield good results.
 
-  * Some fraction of build systems may malfunction when `afl-gcc` or `afl-as` write anything to stderr, even if compilation succeeds. If you're running into build issues, try setting and exporting `AFL_QUIET=1` first, then run `make distclean`, `./configure`, and `make clean all` again.
+  * Some fraction of older build systems may malfunction when `afl-gcc` or `afl-as` write anything to `stderr`, even if compilation succeeds. If you're running into build issues, try setting and exporting `AFL_QUIET=1` first, then run `make distclean`, `./configure`, and `make clean all` again.

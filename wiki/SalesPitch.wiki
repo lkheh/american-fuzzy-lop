@@ -12,7 +12,7 @@ In a hurry? There are several fairly decent reasons to give `afl-fuzz` a try:
 
   * <b>It's rock solid.</b> Compared to other instrumentation- or solver-based fuzzers, it has remarkably few failure modes. It also comes with robust, user-friendly problem detection that guides you through any potential hiccups.
 
-  * <b>No assembly is required.</b> In contrast to most other fuzzers, the tool requires essentially no configuration or fine-tuning. Even if you wanted to, you will find virtually no knobs to fiddle with.
+  * <b>No assembly is required.</b> In contrast to most other fuzzers, the tool requires essentially no configuration or fine-tuning. Even if you wanted to, you will find virtually no knobs to fiddle with and no fuzzing ratios to dial in.
 
   * <b>It's chainable to other tools.</b> The fuzzer generates superior, compact <a href='http://lcamtuf.coredump.cx/afl_demo/'>test corpuses</a> that can serve as a seed for more specialized processes and testing frameworks.
 

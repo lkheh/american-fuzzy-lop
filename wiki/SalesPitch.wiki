@@ -10,7 +10,7 @@ In a hurry? There are several fairly decent reasons to give `afl-fuzz` a try:
 
   * <b>It is fast.</b> Thanks to its low-level compile-time instrumentation and <a href='http://lcamtuf.blogspot.com/2014/10/fuzzing-binaries-without-execve.html'>other optimizations</a>, the tool offers near-native fuzzing speeds against complex, real-world targets.
 
-  * <b>It's rock solid.</b> Compared to other instrumentation- or solver-based fuzzers, American Fuzzy Lop has remarkably few failure modes. It also comes with robust troubleshooting capabilities and user-friendly error messages that guide you through any potential hiccups.
+  * <b>It's rock solid.</b> Compared to other instrumentation- or solver-based fuzzers, it has remarkably few failure modes. It also comes with robust troubleshooting capabilities and user-friendly error messages that guide you through any potential hiccups.
 
   * <b>No assembly is required.</b> In contrast to most other fuzzers, the tool requires essentially no effort to configure and fine-tune. Even if you wanted to, there are virtually no knobs to tweak.
 

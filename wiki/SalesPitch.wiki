@@ -8,7 +8,7 @@ In a hurry? There are several fairly decent reasons to give `afl-fuzz` a try:
 
   * <b>It has street smarts.</b> It is built around a range of <a href='http://lcamtuf.blogspot.com/2014/08/binary-fuzzing-strategies-what-works.html'>carefully researched</a>, high-gain test case preprocessing and fuzzing strategies rarely employed with comparable rigor in other fuzzing frameworks. As a result, it <a href='https://code.google.com/p/american-fuzzy-lop/wiki/TrophyCase'>finds real bugs</a>.
 
-  * <b>It is fast.</b> Thanks to its low-level compile-time instrumentation and <a href='http://lcamtuf.blogspot.com/2014/10/fuzzing-binaries-without-execve.html'>other optimizations</a>, the tool offers near-native fuzzing speeds against common real-world targets. For example, you can get 2,000+ execs per second per core with <i>libpng</i>.
+  * <b>It is fast.</b> Thanks to its low-level compile-time instrumentation and <a href='http://lcamtuf.blogspot.com/2014/10/fuzzing-binaries-without-execve.html'>other optimizations</a>, the tool offers near-native fuzzing speeds against common real-world targets. For example, you can get 2,500+ execs per second per core with <i>libpng</i>.
 
   * <b>It's rock solid.</b> Compared to other instrumentation- or solver-based fuzzers, it has remarkably few failure modes. It also comes with robust troubleshooting capabilities and user-friendly error messages that guide you through any potential hiccups.
 

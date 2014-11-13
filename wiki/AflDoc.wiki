@@ -24,7 +24,7 @@ The latter two techniques are extremely promising in experimental settings. That
 
 ==About AFL==
 
-_American fuzzy lop_ uses edge coverage to rapidly detect subtle, local-scale changes to program control flow without having to perform a complex comparisons between series of distinctive traces (a common failure point for other tools).
+_American fuzzy lop_ uses an enhanced form of edge coverage to rapidly detect subtle, local-scale changes to program control flow without having to perform a complex comparisons between series of distinctive traces (a common failure point for other tools).
 
 In almost-plain English, the fuzzer does this by augmenting the tested code with very lightweight, assembly-level instrumentation that records tuples in the following format:
 
@@ -32,7 +32,7 @@ In almost-plain English, the fuzzer does this by augmenting the tested code with
   <ID of current code location>, <ID of previously-executed code location>
 }}}
 
-The ordering for each tuple is discarded and hit count is tracked only coarsely;
+The ordering for each tuple is discarded, while hit counts is tracked coarsely;
 the main signal used by the fuzzer is the appearance of a previously-unseen
 tuple in the output dataset.
 

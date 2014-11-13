@@ -8,11 +8,11 @@ In a hurry? There are several good reasons to give `afl-fuzz` a try:
 
   * <b>It has street smarts.</b> It is built around a range of <a href='http://lcamtuf.blogspot.com/2014/08/binary-fuzzing-strategies-what-works.html'>carefully researched</a>, high-gain test case preprocessing and fuzzing strategies rarely employed in this fashion in other fuzzing frameworks. As a result, it <a href='https://code.google.com/p/american-fuzzy-lop/wiki/TrophyCase'>finds real bugs</a>.
 
-  * <b>It is fast.</b> Thanks to assembly-level instrumentation and <a href='http://lcamtuf.blogspot.com/2014/10/fuzzing-binaries-without-execve.html'>other optimizations</a>, the tool offers near-native fuzzing speeds against complex, real-world targets.
+  * <b>It is fast.</b> Thanks to its low-level instrumentation and <a href='http://lcamtuf.blogspot.com/2014/10/fuzzing-binaries-without-execve.html'>other optimizations</a>, the tool offers near-native fuzzing speeds against complex, real-world targets.
 
   * <b>It's rock solid.</b> Compared to other instrumentation- or solver-based fuzzers, American Fuzzy Lop has remarkably few failure modes. It also comes with robust troubleshooting capabilities and user-friendly error messages that guide you through any potential hiccups.
 
-  * <b>You don't need to tweak dozens of knobs.</b> In contrast to most other fuzzers, the tool requires essentially no effort to configure. Even if you wanted to, there are virtually no parameters to adjust.
+  * <b>No assembly required.</b> In contrast to most other fuzzers, the tool requires essentially no effort to configure and fine-tune. Even if you wanted to, there are virtually no knobs to tweak.
 
   * <b>It's chainable.</b> The tool generates superior, compact <a href='http://lcamtuf.coredump.cx/afl_demo/'>test corpuses</a> as a seed for more specialized processes and tools.
 

@@ -2,7 +2,7 @@
 
 =american fuzzy lop: vulnerability trophy case=
 
-Although <i>afl-fuzz</i> has quite a few external users, it is still under active development, and my own experiments are usually limited to recreational, single-machine, "vanilla" runs against some of the more difficult or better-fuzzed targets - say, IJG jpeg.
+Although <i>afl-fuzz</i> has a bunch of external users, it is still under active development, and my own experiments are limited to recreational, single-machine, "vanilla" runs against some of the more difficult or better-fuzzed targets - say, IJG jpeg.
 
 So far, this process has yielded in a couple of interesting finds that probably wouldn't be as easy to bump into or isolate with traditional tools:
 

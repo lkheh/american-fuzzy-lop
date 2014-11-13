@@ -1,6 +1,6 @@
-#summary Fuzzing "trophy case"
+#summary Fuzzing trophy case
 
-=american fuzzy lop: trophy case=
+=american fuzzy lop: vulnerability trophy case=
 
 Although <i>afl-fuzz</i> has quite a few external users, it is still under active development, and my own experiments are usually limited to recreational, single-machine, "vanilla" runs against some of the more difficult or better-fuzzed targets - say, IJG jpeg.
 

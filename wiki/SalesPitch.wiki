@@ -16,6 +16,6 @@ In a hurry? There are several fairly decent reasons to give `afl-fuzz` a try:
 
   * <b>It's chainable to other tools.</b> The fuzzer generates superior, compact <a href='http://lcamtuf.coredump.cx/afl_demo/'>test corpuses</a> that can serve as a seed for more specialized processes and testing frameworks.
 
-  * <b>It has a hip, retro-style status screen.</b> Well, <a href='https://twitter.com/lcamtuf/status/524037108285976577'>enough said</a>.
+  * <b>It sport s hip, retro-style UI.</b> Well, <a href='https://twitter.com/lcamtuf/status/524037108285976577'>enough said</a>.
 
 Want to try it out? Check out the <a href='https://code.google.com/p/american-fuzzy-lop/wiki/AflDoc'>documentation</a> or grab the <a href='http://lcamtuf.coredump.cx/afl.tgz'>source code</a> right away.

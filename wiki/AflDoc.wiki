@@ -46,7 +46,7 @@ The instrumentation is used as a part of a simple queue-based algorithm:
 
 The discovered test cases are also periodically culled to eliminate ones that
 have been made obsolete by more inclusive finds discovered later in the
-fuzzing process.
+fuzzing process; and carefully trimmed under instrumentation to keep them short.
 
 Because of its ability to automatically construct a small corpus of interesting test cases, the fuzzer is useful not just for direct fuzzing, but also for seeding other, more labor- or resource-intensive testing regimes. In particular, it's great for generating test cases that can be manually examined for anomalies in the browser environment; in "heavy" applications such as Adobe Photoshop or Microsoft Office; or under Valgrind.
 

@@ -32,6 +32,6 @@ So far, this process has yielded in a couple of interesting finds that probably 
 
   * Several pending issues in compression utilities.
 
-Bugs found by other people include memory corruption issues in GnuPG, <a href='http://www.gnutls.org/security.html#GNUTLS-SA-2014-5'>heap corruption in GnuTLS</a>, buffer overflows in libbfd, and more.
+Bugs found by other people include memory corruption issues in GnuPG, <a href='http://www.gnutls.org/security.html#GNUTLS-SA-2014-5'>heap corruption in GnuTLS</a>, buffer overflows in libbfd, and probably quite a few more that I have no idea about.
 
 As the codebase has gotten more mature over the past few months, I've been contemplating setting up afl for continuous fuzzing. So, more probably to come.

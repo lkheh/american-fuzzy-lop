@@ -35,7 +35,7 @@ This page provides an overview for each of the displayed stats.
 
 ==Process timing==
 
-This section is fairly self-explanatory: it tells you how run the fuzzer has been running and how much time has elapsed since its most recent finds. This is broken down into "paths" (a shorthand for test cases that trigger new execution patterns), crashes, and hangs.
+This section is fairly self-explanatory: it tells you how long the fuzzer has been running and how much time has elapsed since its most recent finds. This is broken down into "paths" (a shorthand for test cases that trigger new execution patterns), crashes, and hangs.
 
 When it comes to timing: there is no hard rule, but most fuzzing jobs should be expected to run for days or weeks; every now and then, some will be allowed to run for months.
 
@@ -91,7 +91,7 @@ This gives you several metrics that are of interest mostly to complete nerds. Th
 
 ==Fuzzing strategy yields==
 
-This is just another nerd-targeted section keeping track of how many paths we have netted, in proportion to the number of execs attempted, for each and fuzzing strategy discussed above. This serves to scientifically validate assumptions about the usefulness of the approaches taken by `afl-fuzz`.
+This is just another nerd-targeted section keeping track of how many paths we have netted, in proportion to the number of execs attempted, for each fuzzing strategy discussed above. This serves to scientifically validate assumptions about the usefulness of the approaches taken by `afl-fuzz`.
 
 The trim strategy stats in this section are a bit different than the rest.
 It shows the absolute count of removed bytes, the number of execs needed to

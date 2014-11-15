@@ -2,6 +2,8 @@
 
 =american fuzzy lop - a practical instrumentation-driven fuzzer=
 
+<b>*** NOTE: This project is being moved to <a href='http://lcamtuf.coredump.cx/afl/'>http://lcamtuf.coredump.cx/afl/</a> - please update your links. This copy of the page is probably no longer up-to-date. ***</b>
+
   * Written and maintained by [mailto:lcamtuf@google.com Michal Zalewski]
   * Copyright 2013, 2014 Google Inc, rights reserved.
   * Released under terms and conditions of the Apache License, version 2.0.

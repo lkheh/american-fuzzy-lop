@@ -2,6 +2,8 @@
 
 =american fuzzy lop: vulnerability trophy case=
 
+<font color=crimson>*** NOTE: This project is being moved to <a href='http://lcamtuf.coredump.cx/afl/'>http://lcamtuf.coredump.cx/afl/</a> - please update your links. This copy of the page is probably no longer up-to-date. ***</font>
+
 Although <i>afl-fuzz</i> has a fair number of external users, it is still under active development, and my own experiments are limited to recreational, single-machine, "vanilla" runs against some of the more difficult or better-fuzzed targets - say, IJG jpeg.
 
 So far, this process has yielded in a couple of interesting finds that probably wouldn't be as easy to bump into or isolate with traditional tools:

@@ -2,6 +2,9 @@
 
 =american fuzzy lop: understanding the status screen=
 
+<font color=crimson>*** NOTE: This project is being moved to <a href='http://lcamtuf.coredump.cx/afl/'>http://lcamtuf.coredump.cx/afl/</a> - please update your links. This copy of the page is probably no longer up-to-date. ***</font>
+
+
 When running `afl-fuzz`, the status screen should look roughly the following way:
 
 {{{

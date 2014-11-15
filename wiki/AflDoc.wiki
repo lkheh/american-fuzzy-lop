@@ -118,8 +118,7 @@ $ ./afl-fuzz [...] -f testme.txt /path/to/program testme.txt
 It is possible to fuzz non-instrumented code using the `-n` flag. This gives you a fairly traditional fuzzer with a couple of nice testing strategies.
 
 You can use `-t` and `-m` to override the default timeout and memory limit for the executed process. This is seldom necessary, except for very memory-hungry
-programs (e.g., video decoders) or when using ASAN (which allocates up to
-several gigs of vmem).
+programs (e.g., video decoders) or when using ASAN (which allocates obscene amounts of vmem).
 
 The fuzzing process itself is relatively simple. It consists of several types of sequential, deterministic operations (bitflips, injection of interesting integers) followed by a "havoc" stage with multiple stacked, random modifications - block deletion, cloning, random bitflips, etc. The deterministic stage takes time proportional to the size of the input file; once this is done, the havoc stages continue for every discovered input until `Ctrl-C` is hit.
 

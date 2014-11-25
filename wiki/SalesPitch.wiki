@@ -1,3 +1,2 @@
-#summary One-page "sales pitch"
 
 <font color=crimson>*** NOTE: This project has moved to <a href='http://lcamtuf.coredump.cx/afl/'>http://lcamtuf.coredump.cx/afl/</a> - please update your links. ***</font>

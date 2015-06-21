@@ -1,0 +1,1 @@
+<font color='crimson'><b>NOTE: This project has moved to</b><a href='http://lcamtuf.coredump.cx/afl/'><a href='http://lcamtuf.coredump.cx/afl/'>http://lcamtuf.coredump.cx/afl/</a></a> - please update your links. 
